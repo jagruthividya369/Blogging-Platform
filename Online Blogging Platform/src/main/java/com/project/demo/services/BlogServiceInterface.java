@@ -19,5 +19,7 @@ public interface BlogServiceInterface {
 
     Optional<Blog> getBlogByBlogIdService(Long blogId);
 
+    Optional<Blog> getBlogByBlogNameService(String blogName);
+
 //    Integer totalLikesForUserService(Long userId);
 }

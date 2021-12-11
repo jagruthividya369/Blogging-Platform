@@ -127,6 +127,11 @@ public class BlogController {
     public Integer getDislikesByBlogId(@PathVariable Long blogId){
         return blogService.getDislikesByBlogIdService(blogId);
     }
+    @GetMapping("/getBlogByBlogName/{blogName}")
+    public Optional<Blog> getBlogByBlogName(@PathVariable String blogName){
+        return blogService.getBlogByBlogNameService(blogName);
+
+    }
 
     //Total likes on all Blogs
 
