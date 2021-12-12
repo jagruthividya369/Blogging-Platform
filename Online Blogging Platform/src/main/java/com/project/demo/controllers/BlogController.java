@@ -19,7 +19,7 @@ public class BlogController {
     // Create a Blog
     @PostMapping("/createBlog/{userId}")
     public void createBlog(@PathVariable Long userId, @RequestBody Blog theBlog) {
-        theBlog.setUser(new User(userId, "", "", "", ""));
+        theBlog.setUser(new User(userId, "", "", "", "","",""));
         theBlog.setBlogDisLikes(0);
         theBlog.setBlogLikes(0);
         theBlog.setPublishedStatus(true);
@@ -30,7 +30,7 @@ public class BlogController {
     // Create a Draft
     @PostMapping("/createDraft/{userId}")
     public void createDraft(@PathVariable Long userId, @RequestBody Blog theBlog) {
-        theBlog.setUser(new User(userId, "", "", "", ""));
+        theBlog.setUser(new User(userId, "", "", "", "","",""));
         theBlog.setPublishedStatus(false);
         theBlog.setBlogDisLikes(0);
         theBlog.setBlogLikes(0);
@@ -65,7 +65,7 @@ public class BlogController {
     //Update Blog by userId
     @PutMapping("updateBlog/{userId}")
     public void updateBlogContent(@PathVariable Long userId, @RequestBody Blog theBlog) {
-        theBlog.setUser(new User(userId, "", "", "", ""));
+        theBlog.setUser(new User(userId, "", "", "", "","",""));
         theBlog.setPublishedStatus(true);
         theBlog.setTimestamp(new Timestamp(System.currentTimeMillis()));
         blogService.updateBlogService(theBlog);
@@ -74,7 +74,7 @@ public class BlogController {
     //Update Draft by userId
     @PutMapping("updateDraft/{userId}")
     public void updateDraftContent(@PathVariable Long userId, @RequestBody Blog theBlog) {
-        theBlog.setUser(new User(userId, "", "", "", ""));
+        theBlog.setUser(new User(userId, "", "", "", "","",""));
         theBlog.setPublishedStatus(false);
         theBlog.setTimestamp(new Timestamp(System.currentTimeMillis()));
         blogService.updateBlogService(theBlog);
@@ -89,7 +89,7 @@ public class BlogController {
     //Blog To Draft
     @PutMapping("blogToDraft/{userId}")
     public void blogToDraft(@PathVariable Long userId, @RequestBody Blog theBlog) {
-        theBlog.setUser(new User(userId, "", "", "", ""));
+        theBlog.setUser(new User(userId, "", "", "", "","",""));
         theBlog.setPublishedStatus(false);
         theBlog.setTimestamp(new Timestamp(System.currentTimeMillis()));
         blogService.updateBlogService(theBlog);
@@ -98,7 +98,7 @@ public class BlogController {
     // Draft To Blog
     @PutMapping("draftToBlog/{userId}")
     public void draftToBlog(@PathVariable Long userId, @RequestBody Blog theBlog) {
-        theBlog.setUser(new User(userId, "", "", "", ""));
+        theBlog.setUser(new User(userId, "", "", "", "","",""));
         theBlog.setPublishedStatus(true);
         theBlog.setTimestamp(new Timestamp(System.currentTimeMillis()));
         blogService.updateBlogService(theBlog);
@@ -126,6 +126,11 @@ public class BlogController {
     @GetMapping("/getDislikes/{blogId}")
     public Integer getDislikesByBlogId(@PathVariable Long blogId){
         return blogService.getDislikesByBlogIdService(blogId);
+    }
+    @GetMapping("/getBlogByBlogName/{blogName}")
+    public Optional<Blog> getBlogByBlogName(@PathVariable String blogName){
+        return blogService.getBlogByBlogNameService(blogName);
+
     }
 
     //Total likes on all Blogs

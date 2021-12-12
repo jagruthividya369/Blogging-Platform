@@ -66,6 +66,10 @@ public class BlogServiceImplementation implements BlogServiceInterface{
         return blogRepository.findById(blogId);
     }
 
+    public Optional<Blog> getBlogByBlogNameService(String blogName) {
+        return blogRepository.findByBlogName(blogName);
+    }
+
 //
 //    public Integer totalLikesForUserService(Long userId) {
 //    }
