@@ -47,7 +47,7 @@ public class Blog {
         this.blogContent = blogContent;
         this.blogLikes = blogLikes;
         this.blogDisLikes = blogDisLikes;
-        this.user =new User(id,"","","","");
+        this.user =new User(id,"","","","","","");
         this.publishedStatus=publishedStatus;
         this.timestamp= timestamp;
     }

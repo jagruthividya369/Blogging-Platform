@@ -14,7 +14,6 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
 public class User {
     @Id
@@ -34,11 +33,69 @@ public class User {
     @Column(name="user_Password", nullable = false)
     @NotEmpty(message="Please enter your password")
     @Length(min=8,message="Your password must have atleast 8 characters")
-    @JsonIgnore // Just in case Jackson tries wants to betray us
     private String userPassword;
 
     @Column(name="display_Name", nullable=false)
     private String displayName;
+
+    private String userLinkedInId;
+
+    private String userPhone;
+    //All Args Constructor
+    public User(Long id, String userName, String userEmailId, String userPassword,String userLinkedInId, String userPhone, String displayName) {
+        this.id = id;
+        this.userName = userName;
+        this.userEmailId = userEmailId;
+        this.userPassword = userPassword;
+        this.userLinkedInId = userLinkedInId;
+        this.userPhone = userPhone;
+        this.displayName = displayName;
+    }
+
+    //Getters and Setters
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
+    }
+    public String getUserName() {
+        return userName;
+    }
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+    public String getUserEmailId() {
+        return userEmailId;
+    }
+    public void setUserEmailId(String userEmailId) {
+        this.userEmailId = userEmailId;
+    }
+    public String getUserPassword() {
+        return userPassword;
+    }
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword;
+    }
+    public String getUserLinkedInId() {
+        return userLinkedInId;
+    }
+    public void setUserLinkedInId(String userLinkedInId) {
+        this.userLinkedInId = userLinkedInId;
+    }
+    public String getUserPhone() {
+        return userPhone;
+    }
+    public void setUserPhone(String userPhone) {
+        this.userPhone = userPhone;
+    }
+    public String getDisplayName() {
+        return displayName;
+    }
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
+    }
+
 }
 
 
