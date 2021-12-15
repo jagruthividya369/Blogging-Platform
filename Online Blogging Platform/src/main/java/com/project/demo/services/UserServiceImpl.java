@@ -63,16 +63,16 @@ public class UserServiceImpl implements UserService {
 	}
 
 	public Optional<User> fetchUserByUserHandle(String displayName) {
-
 		return userRepository.findByDisplayName(displayName);
 	}
 
-	public boolean userLoginService(User theUser) {
-		User user = userRepository.findByDisplayName(theUser.getDisplayName()).get();
-		if(theUser.getUserPassword().equals(user.getUserPassword())){
-			return true;
+	public User userLoginService(User theUser) {
+		String displayName=theUser.getDisplayName();
+		String password=theUser.getUserPassword();
+		if (displayName !="" && password!=""){
+			return userRepository.findByDisplayNameAndUserPassword(displayName,password);
 		}
-		return false;
+		return null;
 	}
 
 }

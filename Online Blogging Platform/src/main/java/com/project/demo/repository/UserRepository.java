@@ -12,14 +12,13 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User, Long> {
 	
 
-//	Optional<User> findByUserName(String userName);
 
 	@Transactional
 	public void deleteByUserEmailId(String userEmailId);
 
 	Optional<User> findByDisplayName(String displayName);
 	
-
+	User findByDisplayNameAndUserPassword(String displayName, String userPassword);
 
 
 }

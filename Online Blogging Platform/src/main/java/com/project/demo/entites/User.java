@@ -54,6 +54,11 @@ public class User {
         this.displayName = displayName;
     }
 
+    public User(String userPassword, String displayName) {
+        this.userPassword = userPassword;
+        this.displayName = displayName;
+    }
+
     //Getters and Setters
     public Long getId() {
         return id;

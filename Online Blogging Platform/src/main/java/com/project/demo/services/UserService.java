@@ -16,5 +16,5 @@ public interface UserService {
 
 	public Optional<User> fetchUserByUserHandle(String displayName);
 
-	boolean userLoginService(User theUser);
+	User userLoginService(User theUser) ;
 }
