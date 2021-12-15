@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -127,12 +128,22 @@ public class BlogController {
     public Integer getDislikesByBlogId(@PathVariable Long blogId){
         return blogService.getDislikesByBlogIdService(blogId);
     }
+    
+    //Get blog by byName
     @GetMapping("/getBlogByBlogName/{blogName}")
     public Optional<Blog> getBlogByBlogName(@PathVariable String blogName){
         return blogService.getBlogByBlogNameService(blogName);
 
     }
+    //Get all Blogs sorted by time
+    @GetMapping("getAllBlogsSortedByTime/{userId}")
+    public List<Blog> getAllBlogsSoretedByTimeStamp(@PathVariable Long userId) {
+    	return blogService.getAllBlogsSoretedByTimeStamp(userId);
+    	
+    }
 
+    
+    
     //Total likes on all Blogs
 
 //    @GetMapping("/totalLikes/{userId}")

@@ -7,13 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Length;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Data
-@NoArgsConstructor
 @Entity
 public class User {
     @Id
@@ -39,9 +33,17 @@ public class User {
     private String displayName;
 
     private String userLinkedInId;
-
+    
+   
     private String userPhone;
-    //All Args Constructor
+    
+    
+    //No Args Constructor
+    public User() {
+		super();
+	}
+
+	//All Args Constructor
     public User(Long id, String userName, String userEmailId, String userPassword,String userLinkedInId, String userPhone, String displayName) {
         this.id = id;
         this.userName = userName;

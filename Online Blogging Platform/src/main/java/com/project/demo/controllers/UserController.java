@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/user")
 public class UserController {
-	
+
 	@Autowired
 	private UserService userService;
 
@@ -19,33 +19,43 @@ public class UserController {
 	public void createNewUser(@RequestBody User theUser) {
 		userService.createNewUser(theUser);
 	}
+
 	// User Login
 	@GetMapping("/login")
-	public boolean userLogin(@RequestBody User theUser){
+	public boolean userLogin(@RequestBody User theUser) {
 		return userService.userLoginService(theUser);
 	}
-	// Update User emailId by User Id
+
+	// Update User EmailId by User Id
 	@PutMapping("/updateEmail/{id}")
 	public void updateUserEmailAddressByUserId(@PathVariable("id") Long id, @RequestBody User theUser) {
-		userService.updateUserEmailAddressService(id, theUser);
+		 userService.updateUserEmailAddressService(id, theUser);
 	}
 
-	// Update
+	// Update All User Data by Display Name
 	@PutMapping("/updateAllUserData/{displayName}")
 	public void updateAllUserDataByName(@PathVariable("displayName") String displayName, @RequestBody User theUser) {
 		userService.updateUserDataService(displayName, theUser);
 	}
 
+	// Delete Account by User EmailId
 	@DeleteMapping("/deleteAccount/{emailId}")
 	public void deleteUserAccount(@PathVariable("emailId") String userEmailId) {
 		userService.deleteUserAccountService(userEmailId);
 	}
 
+	// Get All User Data By DisplayName
 	@GetMapping("/getUserByUserHandle/{displayName}")
-	public Optional<User> fetchUserByUserHandle(@PathVariable("displayName") String displayName) {
+	public Optional<User> fetchUserByUserHandle(@PathVariable("displayName") String displayName)  {
 		return userService.fetchUserByUserHandle(displayName);
-	}
+//		User user=null;
+//		try {
+//			user = userService.fetchUserByUserHandle(displayName);
+//		}catch(Exception e) {
+//			throw new UserDataNotFoundException();
+//		}
+//		return user;
 
-	
+	}
 
 }
