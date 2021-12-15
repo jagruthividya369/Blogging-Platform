@@ -1,15 +1,11 @@
 package com.project.demo.entites;
 
-import lombok.*;
 import org.hibernate.validator.constraints.Length;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
-@Data
 public class Blog {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -51,4 +47,88 @@ public class Blog {
         this.publishedStatus=publishedStatus;
         this.timestamp= timestamp;
     }
+
+	public Long getBlogId() {
+		return blogId;
+	}
+
+	public void setBlogId(Long blogId) {
+		this.blogId = blogId;
+	}
+
+	public String getBlogName() {
+		return blogName;
+	}
+
+	public void setBlogName(String blogName) {
+		this.blogName = blogName;
+	}
+
+	public String getBlogContent() {
+		return blogContent;
+	}
+
+	public void setBlogContent(String blogContent) {
+		this.blogContent = blogContent;
+	}
+
+	public Integer getBlogLikes() {
+		return blogLikes;
+	}
+
+	public void setBlogLikes(Integer blogLikes) {
+		this.blogLikes = blogLikes;
+	}
+
+	public Integer getBlogDisLikes() {
+		return blogDisLikes;
+	}
+
+	public void setBlogDisLikes(Integer blogDisLikes) {
+		this.blogDisLikes = blogDisLikes;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public boolean isPublishedStatus() {
+		return publishedStatus;
+	}
+
+	public void setPublishedStatus(boolean publishedStatus) {
+		this.publishedStatus = publishedStatus;
+	}
+
+	public Date getTimestamp() {
+		return timestamp;
+	}
+
+	public void setTimestamp(Date timestamp) {
+		this.timestamp = timestamp;
+	}
+    //All args constructor
+	public Blog(Long blogId, String blogName,String blogContent, Integer blogLikes,Integer blogDisLikes, boolean publishedStatus, Date timestamp) {
+		super();
+		this.blogId = blogId;
+		this.blogName = blogName;
+		this.blogContent = blogContent;
+		this.blogLikes = blogLikes;
+		this.blogDisLikes = blogDisLikes;
+		this.publishedStatus = publishedStatus;
+		this.timestamp = timestamp;
+	}
+    //No Args Constructor
+	public Blog() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+
+	
 }

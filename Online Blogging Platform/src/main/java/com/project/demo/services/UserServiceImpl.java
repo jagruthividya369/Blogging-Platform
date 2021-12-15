@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
 	public void updateUserDataService(String displayName, User theUser) {
 		User user = userRepository.findByDisplayName(displayName).get();
 		if (Objects.nonNull(theUser.getDisplayName()) && !"".equalsIgnoreCase(theUser.getDisplayName())) {
-			user.setUserName(theUser.getDisplayName());
+			user.setDisplayName(theUser.getDisplayName());
 
 		}
 
@@ -41,6 +41,16 @@ public class UserServiceImpl implements UserService {
 
 		if (Objects.nonNull(theUser.getUserPassword()) && !"".equalsIgnoreCase(theUser.getUserPassword())) {
 			user.setUserPassword(theUser.getUserPassword());
+		}
+		
+		if (Objects.nonNull(theUser.getUserLinkedInId()) && !"".equalsIgnoreCase(theUser.getUserLinkedInId())) {
+			user.setUserLinkedInId(theUser.getUserLinkedInId());
+		}
+		if (Objects.nonNull(theUser.getUserName()) && !"".equalsIgnoreCase(theUser.getUserName())) {
+			user.setUserName(theUser.getUserName());
+		}
+		if (Objects.nonNull(theUser.getUserPhone()) && !"".equalsIgnoreCase(theUser.getUserPhone())) {
+			user.setUserPhone(theUser.getUserPhone());
 		}
 
 		userRepository.save(user);
