@@ -20,8 +20,8 @@ public class UserController {
 		userService.createNewUser(theUser);
 	}
 	// User Login
-	@GetMapping("/login")
-	public boolean userLogin(@RequestBody User theUser){
+	@PostMapping("/login")
+	public User userLogin(@RequestBody User theUser)  {
 		return userService.userLoginService(theUser);
 	}
 	// Update User emailId by User Id
