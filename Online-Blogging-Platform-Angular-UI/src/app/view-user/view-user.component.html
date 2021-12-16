@@ -1,1 +1,14 @@
-<p>view-user works!</p>
+<div class="container" >
+    <div class="jumbotron jumbotron-fluid ">
+        <h3>User Details</h3>
+            <div class="card-body">
+                <h5 class="card-title">User Name: {{user.userName}}</h5>
+                <p class="card-text" >Email Id: {{user.userEmailId}}</p>
+                <p class="card-text" >Password: {{user.userPassword}}</p>
+                <p class="card-text" >Display Name: {{user.displayName}}</p>
+                <p class="card-text" >LinkedIn: {{user.userLinkedInId}}</p>
+                <p class="card-text" >Phone : {{user.userPhone}}</p>
+            </div>
+            </div>
+</div>
+<router-outlet></router-outlet>

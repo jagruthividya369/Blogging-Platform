@@ -47,6 +47,16 @@ public class Blog {
         this.publishedStatus=publishedStatus;
         this.timestamp= timestamp;
     }
+	public Blog(Long blogId, String blogName, String blogContent, Integer blogLikes, Integer blogDisLikes, Long id, boolean publishedStatus, Date timestamp) {
+		this.blogId = blogId;
+		this.blogName = blogName;
+		this.blogContent = blogContent;
+		this.blogLikes = blogLikes;
+		this.blogDisLikes = blogDisLikes;
+		this.user =new User(id,"","","","","","");
+		this.publishedStatus=publishedStatus;
+		this.timestamp= timestamp;
+	}
 
 	public Long getBlogId() {
 		return blogId;

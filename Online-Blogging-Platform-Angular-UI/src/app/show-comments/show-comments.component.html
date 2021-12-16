@@ -1,0 +1,21 @@
+<div class="container" >
+    <div class="jumbotron jumbotron-fluid ">
+        <h2>Blog:</h2>
+        <div class="card-body">
+            <h5 class="card-title">Blog Name: {{blog.blogName}}</h5>
+            <p class="card-text" >By: {{blog.user.displayName}}</p>
+            <p class="card-text">{{blog.blogContent}}</p>
+            </div>
+        <h3>Comments</h3>
+        <div *ngFor="let comment of commentList">
+            <div class="card" style="width: 30rem;">
+              <div class="card-body">
+                <h5 class="card-title">Comment: {{comment.commentDescription}}</h5>
+                <p class="card-text">By: {{user.displayName}}</p>
+                <p class="card-text">On: {{comment.timestamp}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<router-outlet></router-outlet>

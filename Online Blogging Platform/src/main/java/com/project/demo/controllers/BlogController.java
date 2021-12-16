@@ -54,6 +54,7 @@ public class BlogController {
     // Get Blogs by userId
     @GetMapping("/getBlogByUserId/{userId}")
     public List<Blog> getBlogByUserId(@PathVariable Long userId) {
+
         return blogService.getBlogByUserIdService(userId);
     }
 
@@ -61,6 +62,12 @@ public class BlogController {
     @GetMapping("/getDraftByUserId/{userId}")
     public List<Blog> getDraftByUserId(@PathVariable Long userId) {
         return blogService.getDraftByUserIdService(userId);
+    }
+
+    // Get Posts by userId
+    @GetMapping("/getPostByUserId/{userId}")
+    public List<Blog> getPostByUserId(@PathVariable Long userId) {
+        return blogService.getPostByUserIdService(userId);
     }
 
     //Update Blog by userId
@@ -136,22 +143,10 @@ public class BlogController {
 
     }
     //Get all Blogs sorted by time
-    @GetMapping("getAllBlogsSortedByTime/{userId}")
-    public List<Blog> getAllBlogsSoretedByTimeStamp(@PathVariable Long userId) {
-    	return blogService.getAllBlogsSoretedByTimeStamp(userId);
+    @GetMapping("getAllBlogsSortedByTime")
+    public List<Blog> getAllBlogsSortedByTimeStamp() {
+    	return blogService.getAllBlogsSortedByTimeStampService();
     	
     }
-
-    
-    
-    //Total likes on all Blogs
-
-//    @GetMapping("/totalLikes/{userId}")
-//    public Integer totalLikesForUser(@PathVariable Long userId){
-//        return blogService.totalLikesForUserService(userId);
-//    }
-    //Total Dislikes on all Blogs
-
-
 
 }

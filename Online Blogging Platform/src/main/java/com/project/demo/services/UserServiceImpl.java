@@ -20,10 +20,8 @@ public class UserServiceImpl implements UserService {
 
 	public void updateUserEmailAddressService(Long id, User theUser) {
 		User user = userRepository.findById(id).get();
-
 		if (Objects.nonNull(theUser.getUserEmailId()) && !"".equalsIgnoreCase(theUser.getUserEmailId())) {
 			user.setUserEmailId(theUser.getUserEmailId());
-
 		}
 		userRepository.save(user);
 	}
@@ -57,7 +55,6 @@ public class UserServiceImpl implements UserService {
 	}
 
 	public void deleteUserAccountService(String userEmailId) {
-
 		userRepository.deleteByUserEmailId(userEmailId);
 
 	}
@@ -74,5 +71,9 @@ public class UserServiceImpl implements UserService {
 		}
 		return null;
 	}
+	public Optional<User> getUserByUserIdService(long id){
+		return userRepository.findById(id);
+	}
+
 
 }

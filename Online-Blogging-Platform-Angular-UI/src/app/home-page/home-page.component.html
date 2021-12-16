@@ -1,1 +1,66 @@
-<p>home-page works!</p>
+<nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a [routerLink]="['/WelcomePage']" routerLinkActive="active" class="nav-link"> 
+          <h4>Blog Book</h4></a>
+      </li>
+      <li class="nav-item" >
+        <a [routerLink]="['/LoginUser']" routerLinkActive="active" class="nav-link">
+          <h4> Login </h4> </a>
+      </li>
+    </ul>
+  </nav>
+  <div class="container">
+      <router-outlet></router-outlet>
+  </div>
+ 
+  <form id="form">
+    <input class="form-control mr-sm-2" style="width: 44rem;" type="search" id="query" name="q" placeholder="Search here for blog" [(ngModel)]="blog.blogName">
+    <button  class="btn btn-outline-success my-2 my-sm-0" (click)="searchBlog()">Search Blog By Name</button>
+    <br>
+    <br>
+    <input class="form-control mr-sm-2" style="width: 44rem;" type="search" id="query" name="q" placeholder="Search here for user" [(ngModel)]="user.displayName">
+    <button class="btn btn-outline-success my-2 my-sm-0" (click)="searchUser()">Search User By Display Name</button>
+  </form>
+  <br>
+  <br>
+      <div class="btn-toolbar" role="toolbar" aria-label="Basic example">
+        <div class="btn-group mr-2" role="group">
+          <button class="btn btn-info" (click)="getAllBlogsMethod()">Get all Blogs</button>
+        </div>
+      </div>
+    <br>
+
+    <div *ngFor="let blog of blogList">
+      <div class="card" style="width: 44rem;">
+        <div class="card-body">
+          <h5 class="card-title">{{blog.blogName}}</h5>
+          <p class="card-text">{{blog.blogContent}}</p>
+          <p class="card-text" >By: {{blog.user.displayName}}</p>
+        </div>
+      </div>
+      <br>
+    </div>
+
+    <div *ngIf="blog.blogId !=null">
+      <div class="card" style="width: 44rem;">
+        <div class="card-body">
+          <h5 class="card-title">{{blog.blogName}}</h5>
+          <p class="card-text">{{blog.blogContent}}</p>
+          <p class="card-text" >By: {{blog.user.displayName}}</p>
+        </div>
+      </div>
+      <br>
+    </div>
+
+    <div *ngIf="userResponseData!=null">
+      <div class="card" style="width: 44rem;">
+        <div class="card-body">
+          <h5 class="card-title">Display Name: {{user.displayName}}</h5>
+          <p class="card-text">User Name: {{user.userName}}</p>
+          <p class="card-text" >Email Id: {{user.userEmailId}}</p>
+        </div> 
+      </div>
+    </div>
+  
+

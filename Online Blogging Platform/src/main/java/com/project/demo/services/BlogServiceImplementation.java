@@ -16,31 +16,27 @@ import java.util.stream.StreamSupport;
 public class BlogServiceImplementation implements BlogServiceInterface{
     @Autowired
     private BlogRepository blogRepository;
-    @Override
+
     public void createBlogService( Blog theBlog) {
         blogRepository.save(theBlog);
     }
-    @Override
+
     public List<Blog> getBlogByUserIdService(Long userId) {
-        return blogRepository.findByUserId(userId).stream().filter(theBlog->theBlog.isPublishedStatus()).collect(Collectors.toList());
+        return blogRepository.findByUserId(userId).stream().filter(theBlog->theBlog.isPublishedStatus()).sorted(Comparator.comparing(Blog::getTimestamp).reversed()).collect(Collectors.toList());
     }
-    @Override
     public List<Blog> getDraftByUserIdService(Long userId) {
-        return blogRepository.findByUserId(userId).stream().filter(theBlog->!(theBlog.isPublishedStatus())).collect(Collectors.toList());
+        return blogRepository.findByUserId(userId).stream().filter(theBlog->!(theBlog.isPublishedStatus())).sorted(Comparator.comparing(Blog::getTimestamp).reversed()).collect(Collectors.toList());
     }
-    @Override
+
     public void updateBlogService(Blog theBlog) {
         blogRepository.save(theBlog);
     }
-    @Override
+
     public void deleteBlogService(Long blogId) {
         blogRepository.deleteById(blogId);
     }
-    @Override
-    public List<Blog> getRecentBlogsService() {
-//        Return Top5 latest uploaded files(blogs+drafts included)
-//        return blogRepository.findFirst5ByOrderByTimestampDesc();
 
+    public List<Blog> getRecentBlogsService() {
         return StreamSupport
                 .stream(blogRepository.findAll().spliterator(), false)
                 .filter(theBlog->theBlog.isPublishedStatus())
@@ -48,7 +44,8 @@ public class BlogServiceImplementation implements BlogServiceInterface{
                 .limit(5)
                 .collect(Collectors.toList());
     }
-    @Override
+
+
     public List<Blog> getRecentDraftsService() {
         return StreamSupport
                 .stream(blogRepository.findAll().spliterator(), false)
@@ -57,33 +54,38 @@ public class BlogServiceImplementation implements BlogServiceInterface{
                 .limit(5)
                 .collect(Collectors.toList());
     }
-    @Override
+
     public Integer getLikesByBlogIdService(Long blogId) {
         return blogRepository.findById(blogId).get().getBlogLikes();
     }
-    @Override
+
+
     public Integer getDislikesByBlogIdService(Long blogId) {
         return blogRepository.findById(blogId).get().getBlogDisLikes();
     }
-    @Override
+
+
     public Optional<Blog> getBlogByBlogIdService(Long blogId) {
         return blogRepository.findById(blogId);
     }
-    @Override
+
+
     public Optional<Blog> getBlogByBlogNameService(String blogName) {
         return blogRepository.findByBlogName(blogName);
     }
 
-	@Override
-	public List<Blog> getAllBlogsSoretedByTimeStamp(Long userId) {
-		return blogRepository.findAllBlogsByOrderByTimestampDesc();
-		
+	public List<Blog> getAllBlogsSortedByTimeStampService() {
+		return StreamSupport
+                .stream(blogRepository.findAll().spliterator(), false)
+                .filter(theBlog->theBlog.isPublishedStatus())
+                .sorted(Comparator.comparing(Blog::getTimestamp).reversed())
+                .collect(Collectors.toList());
 	}
-	
-	
 
-//
-//    public Integer totalLikesForUserService(Long userId) {
-//    }
+
+
+    public List<Blog> getPostByUserIdService(Long userId) {
+        return blogRepository.findByUserId(userId);
+    }
 
 }

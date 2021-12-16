@@ -1,5 +1,6 @@
 package com.project.demo.entites;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -17,45 +18,41 @@ public class Comment {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="commentId")
-	private Long id;
-	
-	private String comment;
-	
+	private Long commentId;
+
+	private String commentDescription;
+
     @Column(name = "published_on")
     @Temporal(TemporalType.TIMESTAMP)
     private Date timestamp;
-    
+
     @ManyToOne
     private Blog blog;
 
-    //No Args Constructor
-	public Comment() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-    //All Args Constructor
-	public Comment(Long id, String comment, Date timestamp) {
-		super();
-		this.id = id;
-		this.comment = comment;
+	public Comment(Long commentId, String commentDescription, Date timestamp, Long id ) {
+		this.commentId = commentId;
+		this.commentDescription = commentDescription;
 		this.timestamp = timestamp;
-	}
-   
-	//Getters and Setters
-	public Long getId() {
-		return id;
+		this.blog = new Blog(id,"","",0,0,0l,true,new Timestamp(System.currentTimeMillis()));
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public Comment() {
 	}
 
-	public String getComment() {
-		return comment;
+	public Long getCommentId() {
+		return commentId;
 	}
 
-	public void setComment(String comment) {
-		this.comment = comment;
+	public void setCommentId(Long commentId) {
+		this.commentId = commentId;
+	}
+
+	public String getCommentDescription() {
+		return commentDescription;
+	}
+
+	public void setCommentDescription(String commentDescription) {
+		this.commentDescription = commentDescription;
 	}
 
 	public Date getTimestamp() {
@@ -65,14 +62,12 @@ public class Comment {
 	public void setTimestamp(Date timestamp) {
 		this.timestamp = timestamp;
 	}
-	
-	public Comment(Long id, String comment, Date timestamp,Long blogId) {
-		super();
-		this.id = id;
-		this.comment = comment;
-		this.timestamp = timestamp;
-		this.blog=new Blog(blogId, "", "", 0, 0, false, timestamp);
-	}
-    
 
+	public Blog getBlog() {
+		return blog;
+	}
+
+	public void setBlog(Blog blog) {
+		this.blog = blog;
+	}
 }

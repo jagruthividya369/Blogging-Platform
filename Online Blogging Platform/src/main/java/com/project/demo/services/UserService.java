@@ -17,4 +17,6 @@ public interface UserService {
 	public Optional<User> fetchUserByUserHandle(String displayName);
 
 	User userLoginService(User theUser) ;
+
+	Optional<User> getUserByUserIdService(long id);
 }
