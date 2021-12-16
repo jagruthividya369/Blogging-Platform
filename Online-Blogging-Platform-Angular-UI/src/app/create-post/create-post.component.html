@@ -1,0 +1,41 @@
+<div class="container" >
+    <div class="jumbotron jumbotron-fluid ">
+        <h3>New Blog Registration</h3>
+        <form>
+            <div class="form-group">
+                <label for="blogName">Name: </label>
+                <input [(ngModel)]="blog.blogName" type="text" placeholder="Enter Name of the blog" class="form-control" id="blogName" name="blogName" required minlength="5" #bName="ngModel">
+            </div>
+            <div class="alert alert-danger" *ngIf="bName.touched && !bName.valid">
+                <div *ngIf="bName.errors!['required']">Enter Blog name</div>
+                <div *ngIf="bName.errors!['minlength']">Atleast should be 10 characters</div>
+            </div>
+            <div>
+            <label for="blogContent">Blog Content: </label>
+                <textarea class="form-control" [(ngModel)]="blog.blogContent" type="text" placeholder="Enter Content of the blog" class="form-control" id="blogContent" name="blogContent" required minlength="20" #bContent="ngModel" rows="6"></textarea>
+
+                <!-- <input [(ngModel)]="blog.blogContent" type="text" placeholder="Enter Content of the blog" class="form-control" id="blogContent" name="blogContent" required minlength="20" #bContent="ngModel"> -->
+            </div>
+            <div class="alert alert-danger" *ngIf="bContent.touched && !bContent.valid">
+                <div *ngIf="bContent.errors!['required']">Enter Content of the blog</div>
+                <div *ngIf="bContent.errors!['minlength']">Atleast should be 50 characters</div>
+            </div>
+            <div>
+            <label for="publishedStatus">Keep your post Public:</label>
+            <div class="input-style">
+                <label class="form-check">
+                    <input type="radio" value="true" name="privacy"  [(ngModel)]="blog.publishedStatus">
+                    Yes keep my post Public
+                </label>
+                <br>
+                <label class="form-check">
+                    <input type="radio" value="false" name="privacy" [(ngModel)]="blog.publishedStatus">
+                    No keep it private
+                </label>
+            </div>
+        </div>
+            <button class="btn btn-success" (click)="createNewBlog()">Create the Post</button>
+        </form>
+        </div>
+</div>
+<router-outlet></router-outlet>

@@ -26,6 +26,11 @@ public class UserController {
 		return userService.userLoginService(theUser);
 	}
 
+
+	@GetMapping("/userByUserId/{id}")
+	public Optional<User> getUserByUserId(@PathVariable long id){
+		return userService.getUserByUserIdService(id);
+	}
 	// Update User EmailId by User Id
 	@PutMapping("/updateEmail/{id}")
 	public void updateUserEmailAddressByUserId(@PathVariable("id") Long id, @RequestBody User theUser) {
@@ -48,14 +53,6 @@ public class UserController {
 	@GetMapping("/getUserByUserHandle/{displayName}")
 	public Optional<User> fetchUserByUserHandle(@PathVariable("displayName") String displayName)  {
 		return userService.fetchUserByUserHandle(displayName);
-//		User user=null;
-//		try {
-//			user = userService.fetchUserByUserHandle(displayName);
-//		}catch(Exception e) {
-//			throw new UserDataNotFoundException();
-//		}
-//		return user;
-
 	}
 
 }

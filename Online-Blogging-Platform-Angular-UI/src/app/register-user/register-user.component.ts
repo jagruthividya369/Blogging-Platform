@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { User } from '../User';
 import { UserService } from '../user.service';
 
@@ -9,14 +10,15 @@ import { UserService } from '../user.service';
 })
 export class RegisterUserComponent implements OnInit {
   user : User = new User();
-  constructor(private UserService : UserService) { }
+  constructor(private UserService : UserService, private router: Router) { }
 
   ngOnInit(): void {
   }
   createNewUser():void{
     this.UserService.createNewUser(this.user)
     .subscribe(responseData =>{
-      alert("User Registration Successful");
+      alert("User Registration Successful"); 
+      this.router.navigate(["LoginUser"]);
     });
   }
 

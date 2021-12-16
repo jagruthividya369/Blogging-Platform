@@ -31,8 +31,7 @@ public interface BlogServiceInterface {
 
     Optional<Blog> getBlogByBlogNameService(String blogName);
     
-    List<Blog> getAllBlogsSoretedByTimeStamp(Long userId);
+    List<Blog> getAllBlogsSortedByTimeStampService();
 
-
-//    Integer totalLikesForUserService(Long userId);
+    List<Blog> getPostByUserIdService(Long userId);
 }

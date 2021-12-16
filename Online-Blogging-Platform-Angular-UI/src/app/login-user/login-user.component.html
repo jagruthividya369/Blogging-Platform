@@ -9,6 +9,7 @@
             <div class="alert alert-danger" *ngIf="uDName.touched && !uDName.valid">
                 <div *ngIf="uDName.errors!['required']">Enter your Display name</div>
             </div>
+            
             <div class="form-group">
                 <label for="userPassword">Password: </label>
                 <input [(ngModel)]="user.userPassword" type="password" placeholder="Enter your Password" class="form-control" id="userPassword" name="userPassword" required  #uPassword="ngModel">
@@ -16,7 +17,18 @@
             <div class="alert alert-danger" *ngIf="uPassword.touched && !uPassword.valid">
                 <div *ngIf="uPassword.errors!['required']">Enter your Password</div>
             </div>
+            <button class="btn btn-success" (click)="loginUser()">Login</button>
+            <div>
+                New User?
+                <button class="btn btn-success" [routerLink]="['/RegisterUser']">Register</button>
+
+            </div>
+            <div *ngIf="responseData==null">
+                <div class="alert alert-danger">Bad Credentials</div>
+
+            </div>
         </form>
     </div>
 </div>
+
 <router-outlet></router-outlet>

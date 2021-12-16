@@ -11,6 +11,6 @@ import com.project.demo.entites.Comment;
 @Repository
 public interface CommentRepository extends JpaRepository<Comment,Long> {
 
-	List<Blog> findByBlogId(Long blogId);
 
+	List<Comment> findByBlogBlogId(long blogId);
 }

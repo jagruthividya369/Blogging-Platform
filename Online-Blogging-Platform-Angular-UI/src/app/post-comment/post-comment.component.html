@@ -1,0 +1,16 @@
+<div class="container" >
+    <div class="jumbotron jumbotron-fluid ">
+        <h3>Posting Comment</h3>
+        <form>
+            <div>
+            <label for="commentDescription">Comment Content: </label>
+                <textarea class="form-control" [(ngModel)]="comment.commentDescription" type="text" placeholder="Enter your Comment" class="form-control" id="commentDescription" name="commentDescription" required minlength="5" #CContent="ngModel" rows="3"></textarea>
+            </div>
+            <div class="alert alert-danger" *ngIf="CContent.touched && !CContent.valid">
+                <div *ngIf="CContent.errors!['required']">Enter Content of the Comment</div>
+                <div *ngIf="CContent.errors!['minlength']">Atleast should be 5 characters</div>
+            </div>
+            <button class="btn btn-success" (click)="createNewComment();">Post the Post</button>
+        </form>
+</div>
+<router-outlet></router-outlet>
